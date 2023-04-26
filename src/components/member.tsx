@@ -1,41 +1,10 @@
 
 import { Container, Text, Box, Image } from "@chakra-ui/react";
-import { collection, getDocs } from "firebase/firestore/lite";
-import { useEffect, useState } from "react";
-import { db } from '../services/firebase-config'
-
-interface MemberInterface {
-  id: string
-  name: string
-  function: string
-  entryDate: string
-  director: boolean
-  imageURL: string
-}
+import { membersList } from "@/hooks/getDocs";
 
 export function Member () {
-  const [members, setMembers] = useState<MemberInterface[]>([]);
-
-  async function getData () {
-    const memberArray: MemberInterface[] = []
-    const querySnapshot = await getDocs(collection(db, "data"));
-    querySnapshot.forEach((doc) => {   
-      memberArray.push({
-        id: doc.id, 
-        name: doc.data().name, 
-        function: doc.data().function, 
-        entryDate: doc.data().entryDate,
-        director: doc.data().director,
-        imageURL: doc.data().imageURL
-      })
-    });
-    setMembers(memberArray)
-  }
-
-  useEffect (() => {
-    getData()
-  }, []);
-
+  const { members } = membersList()
+  console.log(members)
   function handleFunction(memberFunction: string) {
     if (memberFunction == 'tec') {
       return 'Tecnologia'
