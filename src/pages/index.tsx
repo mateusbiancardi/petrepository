@@ -1,10 +1,11 @@
 
-import { Member } from "@/components/member";
+import { MemberList } from "@/components/MemberList";
 
-export default function Home () {
+export default function Home() {
+  
   return (
     <>
-      <Member/>
+      <MemberList />
     </>
   )
 }
