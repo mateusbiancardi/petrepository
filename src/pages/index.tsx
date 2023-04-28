@@ -8,6 +8,7 @@ export default function Home() {
   
   useEffect(() => {
     getMembers()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <>
